@@ -14,7 +14,7 @@ struct Node
         data=x;
         next=NULL;
     }
-
+        
 };
 
 
@@ -28,43 +28,57 @@ void displayList(Node *head)
 }
 
 
+
+// } Driver Code Ends
+
+//User function Template for C++
+
+/*
+struct Node
+{
+    int data;
+    Node * next;
+    Node (int x)
+    {
+        data=x;
+        next=NULL;
+    }
+        
+};
+*/
+
 bool isSorted(Node * head)
 {
     //Your code here
     if(head==NULL)
         return false;
-
+    
     Node *p=head,*q;
-
-    int i=0,j=0,l=0;
-
+    
+    bool x=true,y=true;
+    
     while(p){
-        l++;
-        q=p;
-        p=p->next;
-
-        if(p->data > q->data){
-            i++;
-        } else if(p->data > q->data) {
-            j++;
-        } else {
-            i++; j++;
+        if(p->next != NULL){
+           if(p->data > p->next->data){
+                x=false;
+            } 
+            if(p->data < p->next->data){
+                y=false;
+            } 
         }
+        p = p->next;
     }
-
-    if(l==(i+1) || l==(j+1))
-        return true;
-    else
-        return false;
+    
+    return x || y;
 }
-
+    
 
 
 //{ Driver Code Starts.
 
 
-int main()
-{
+int main() 
+{ 
     int t;
     cin>>t;
     while(t--)
@@ -83,7 +97,7 @@ int main()
             tail = tail->next;
         }
         cout<<isSorted(head) << endl;
-
+    
 cout << "~" << "\n";
 }
     return 0;
